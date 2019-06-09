@@ -1,0 +1,23 @@
+{
+  "name": "servicestack-angular",
+  "version": "1.0.0",
+  "description": "Angular controls for ServiceStack Apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ServiceStack/servicestack-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ServiceStack/servicestack-angular/issues"
+  },
+  "homepage": "https://github.com/ServiceStack/servicestack-angular#readme",
+  "devDependencies": {
+    "@angular/cli": "^8.0.2",
+    "@servicestack/cli": "^1.0.10"
+  }
+}
