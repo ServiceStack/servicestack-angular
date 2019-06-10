@@ -2,8 +2,6 @@
  * Public API Surface of angular
  */
 
-export * from './lib/ServiceStack.service';
-
 export * from './lib/SetAttrs';
 export * from './lib/Forbidden';
 export * from './lib/Navbar';
