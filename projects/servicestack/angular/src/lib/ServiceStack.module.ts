@@ -52,4 +52,4 @@ import { NavLinkButtonComponent } from './NavLinkButton';
     NavLinkButtonComponent,
   ]
 })
-export class AngularModule { }
+export class ServiceStackModule { }

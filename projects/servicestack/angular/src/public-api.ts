@@ -17,4 +17,4 @@ export * from './lib/Button';
 export * from './lib/NavButtonGroup';
 export * from './lib/NavLinkButton';
 
-export * from './lib/angular.module';
+export * from './lib/ServiceStack.module';

@@ -1,12 +1,10 @@
 {
   "name": "@servicestack/angular",
-  "version": "0.0.1",
-  "dependencies": {
-    "@servicestack/client": "^1.0.27"
-  },
+  "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@angular/router": "^8.0.0"
+    "@angular/router": "^8.0.0",
+    "@servicestack/client": "^1.0.0"
   }
 }
