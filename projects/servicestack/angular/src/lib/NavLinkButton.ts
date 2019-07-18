@@ -2,21 +2,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NavItem, NavOptions, NavDefaults, NavLinkDefaults, trimEnd, activeClassNav, btnClasses } from '@servicestack/client';
 import { BootstrapBase, optionProps, sanitizeOptions, routePath } from './core';
 
-function parseIconHtml(html: string) {
-    const match = /class="([^"]+)/.exec(html);
-    if (match != null) {
-        return match[1];
-    }
-    return null;
-}
-
 @Component({
     selector: 'nav-link-button',
     template: `
         <ng-link *ngIf="show"
                 [to]="hashPrefix + item.href" (click)="onClick($event)" [id]="item.id"
                 [classList]="[item.className, opt.navItemClass, activeCls, btnCls]">
-            <i *ngIf="iconCls" [className]="iconCls"></i>
+            <i *ngIf="item.iconClass" [className]="item.iconClass"></i>
             {{item.label}}
         </ng-link>
     `
@@ -59,9 +51,5 @@ export class NavLinkButtonComponent extends BootstrapBase {
 
     get btnCls() {
         return btnClasses(this.bootstrapClasses);
-    }
-
-    get iconCls() {
-        return parseIconHtml(this.item.iconHtml);
     }
 }
