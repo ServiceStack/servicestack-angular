@@ -14,17 +14,17 @@ import { BootstrapBase, optionProps, sanitizeOptions } from './core';
 export class LinkButtonComponent extends BootstrapBase {
 
     @Input() href: string = '';
-    @Input() options: NavOptions;
-    @Input() navItemClass: string;
-    @Input() exact: boolean;
+    @Input() options: NavOptions|undefined;
+    @Input() navItemClass: string|undefined;
+    @Input() exact: boolean|undefined;
     @Output() click: EventEmitter<any> = new EventEmitter();
 
-    @Input() id: string;
-    @Input() name: string;
-    @Input() autofocus: boolean;
-    @Input() disabled: boolean;
+    @Input() id: string|undefined;
+    @Input() name: string|undefined;
+    @Input() autofocus: boolean|undefined;
+    @Input() disabled: boolean|undefined;
 
-    onClick(e) {
+    onClick(e:any) {
         this.click.emit(e);
     }
 
@@ -52,7 +52,7 @@ export class LinkButtonComponent extends BootstrapBase {
         return btnClasses(this.bootstrapClasses);
     }
 
-    ngOnInit() {
+    ngOnInit(this: any|any[]) {
         if (this.attrs) {
             for (const k in this.attrs) {
                 this[k] = this.attrs[k];

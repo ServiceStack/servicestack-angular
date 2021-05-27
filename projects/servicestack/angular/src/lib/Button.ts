@@ -13,16 +13,16 @@ const PROPS = ['id', 'type', 'name', 'autofocus', 'disabled', 'value'];
     `,
 })
 export class ButtonComponent extends BootstrapBase {
-    @Input() id: string;
-    @Input() name: string;
-    @Input() type: string;
-    @Input() value: string;
-    @Input() autofocus: boolean;
-    @Input() disabled: boolean;
+    @Input() id: string|undefined;
+    @Input() name: string|undefined;
+    @Input() type: string|undefined;
+    @Input() value: string|undefined;
+    @Input() autofocus: boolean|undefined;
+    @Input() disabled: boolean|undefined;
 
     @Output() click: EventEmitter<any> = new EventEmitter();
 
-    onClick(e) {
+    onClick(e:any) {
         this.click.emit(e);
     }
 

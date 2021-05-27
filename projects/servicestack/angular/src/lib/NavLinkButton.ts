@@ -6,26 +6,26 @@ import { BootstrapBase, optionProps, sanitizeOptions, routePath } from './core';
     selector: 'nav-link-button',
     template: `
         <ng-link *ngIf="show"
-                [to]="hashPrefix + item.href" (click)="onClick($event)" [id]="item.id"
-                [classList]="[item.className, opt.navItemClass, activeCls, btnCls]">
-            <i *ngIf="item.iconClass" [className]="item.iconClass"></i>
-            {{item.label}}
+                [to]="hashPrefix + (item?.href||'')" (click)="onClick($event)" [id]="item?.id"
+                [classList]="[item?.className||'', opt.navItemClass, activeCls, btnCls]">
+            <i *ngIf="item?.iconClass" [className]="item?.iconClass||''"></i>
+            {{item?.label || ''}}
         </ng-link>
     `
 })
 export class NavLinkButtonComponent extends BootstrapBase {
 
-    @Input() href: string;
-    @Input() item: NavItem;
-    @Input() options: NavOptions;
-    @Input() id: string;
-    @Input() baseHref: string;
-    @Input() activePath: string;
-    @Input() navItemClass: string;
-    @Input() exact: boolean;
+    @Input() href: string|undefined;
+    @Input() item: NavItem|undefined;
+    @Input() options: NavOptions|undefined;
+    @Input() id: string|undefined;
+    @Input() baseHref: string|undefined;
+    @Input() activePath: string|undefined;
+    @Input() navItemClass: string|undefined;
+    @Input() exact: boolean|undefined;
     @Output() click: EventEmitter<any> = new EventEmitter();
 
-    onClick(e) {
+    onClick(e:any) {
         this.click.emit(e);
     }
 
@@ -46,7 +46,7 @@ export class NavLinkButtonComponent extends BootstrapBase {
     }
 
     get activeCls() {
-        return activeClassNav(this.item, this.useActivePath);
+        return this.item && activeClassNav(this.item, this.useActivePath);
     }
 
     get btnCls() {

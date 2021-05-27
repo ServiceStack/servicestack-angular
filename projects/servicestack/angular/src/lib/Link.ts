@@ -14,17 +14,17 @@ const PROPS = ['id', 'name', 'autofocus'];
 })
 export class LinkComponent {
 
-    @Input() classList: string[];
-    @Input() to: string;
+    @Input() classList: string[] = [];
+    @Input() to: string|undefined;
     @Output() click: EventEmitter<any> = new EventEmitter();
 
     @Input() attrs: any;
-    @Input() id: string;
-    @Input() name: string;
-    @Input() autofocus: boolean;
-    @Input() disabled: boolean;
+    @Input() id: string|undefined;
+    @Input() name: string|undefined;
+    @Input() autofocus: boolean|undefined;
+    @Input() disabled: boolean|undefined;
 
-    onClick(e) {
+    onClick(e:any) {
         this.click.emit(e);
     }
 

@@ -16,10 +16,10 @@ import { Router, ActivatedRoute } from '@angular/router';
     `
 })
 export class ForbiddenComponent implements OnInit {
-    @Input() message: string;
-    @Input() path: string;
-    @Input() role: string;
-    @Input() permission: string;
+    @Input() message: string|undefined;
+    @Input() path: string|undefined;
+    @Input() role: string|undefined;
+    @Input() permission: string|undefined;
 
     useMessage = '';
     usePath = '';

@@ -46,30 +46,31 @@ function inputSelectedValues(input: HTMLInputElement) {
 })
 export class InputComponent extends AbstractValueAccessor {
 
-    @Input() responseStatus: object;
+    @Input() responseStatus: object|undefined;
     @Input() type: string = 'text';
-    @Input() name: string;
-    @Input() placeholder: string;
-    @Input() label: string;
-    @Input() help: string;
+    @Input() name: string|undefined;
+    @Input() placeholder: string|undefined;
+    @Input() label: string|undefined;
+    @Input() help: string|undefined;
     @Input() inputClass: string = 'form-control-lg';
     @Input() inline: boolean = false;
+    // @ts-ignore
     @Input() value: string[]|string;
-    @Input() values: any[];
+    @Input() values: any[] = [];
 
-    onInput(e: HTMLInputElement) { 
+    onInput(e: HTMLInputElement|any) { 
         this.value = e.value;
     }
 
-    onInputValues(e: HTMLInputElement) { 
+    onInputValues(e: HTMLInputElement|any) { 
         this.value = inputSelectedValues(e);
     }
 
-    get id(){ return this.name; }
+    get id(){ return this.name||''; }
 
     concat(prefix: string, id: string, suffix: string) { return prefix + id + (suffix || ''); }
     get isCheck(){ return this.type === 'radio' || this.type === 'checkbox'; }
-    get errorField(){ return errorResponse.call(this, this.id); }
+    get errorField(){ return errorResponse.call(this, this.id || ''); }
     get hasError(){ return !!this.errorField; }
     get kvpValues() {
         const kvps = (this.values || []).map((x) => typeof x === 'string'

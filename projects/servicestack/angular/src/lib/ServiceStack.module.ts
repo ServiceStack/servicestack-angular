@@ -16,6 +16,8 @@ import { ButtonComponent } from './Button';
 import { NavButtonGroupComponent } from './NavButtonGroup';
 import { NavLinkButtonComponent } from './NavLinkButton';
 
+export { NavBase, BootstrapBase, NavBootstrapBase };
+
 @NgModule({
   declarations: [
     NavBase, BootstrapBase, NavBootstrapBase,

@@ -10,7 +10,7 @@ import { errorResponseExcept } from '@servicestack/client';
 export class ErrorSummaryComponent {
 
     @Input() responseStatus!: object;
-    @Input() except!: string;
+    @Input() except: string|undefined;
 
-    get errorSummary(){ return errorResponseExcept.call(this, this.except); }
+    get errorSummary(){ return errorResponseExcept.call(this, this.except||''); }
 }

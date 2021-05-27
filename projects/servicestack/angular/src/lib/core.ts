@@ -2,7 +2,7 @@ import { NavItem, NavOptions, classNames } from '@servicestack/client';
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export function bootstrapAttrs() {
+export function bootstrapAttrs(this: any) {
     return {
         'primary': this.primary,
         'outline-primary': this.outlinePrimary,
@@ -32,31 +32,31 @@ export function bootstrapAttrs() {
     template: `<i></i>`
 })
 export class BootstrapBase {
-    @Input() primary: boolean;
-    @Input('outline-primary') outlinePrimary: boolean;
-    @Input() secondary: boolean;
-    @Input('outline-secondary') outlineSecondary: boolean;
-    @Input() success: boolean;
-    @Input('outline-success') outlineSuccess: boolean;
-    @Input() info: boolean;
-    @Input('outline-info') outlineInfo: boolean;
-    @Input() warning: boolean;
-    @Input('outline-warning') outlineWarning: boolean;
-    @Input() danger: boolean;
-    @Input('outline-danger') outlineDanger: boolean;
-    @Input() light: boolean;
-    @Input('outline-light') outlineLight: boolean;
-    @Input() dark: boolean;
-    @Input('outline-dark') outlineDark: boolean;
+    @Input() primary: boolean|undefined;
+    @Input('outline-primary') outlinePrimary: boolean|undefined;
+    @Input() secondary: boolean|undefined;
+    @Input('outline-secondary') outlineSecondary: boolean|undefined;
+    @Input() success: boolean|undefined;
+    @Input('outline-success') outlineSuccess: boolean|undefined;
+    @Input() info: boolean|undefined;
+    @Input('outline-info') outlineInfo: boolean|undefined;
+    @Input() warning: boolean|undefined;
+    @Input('outline-warning') outlineWarning: boolean|undefined;
+    @Input() danger: boolean|undefined;
+    @Input('outline-danger') outlineDanger: boolean|undefined;
+    @Input() light: boolean|undefined;
+    @Input('outline-light') outlineLight: boolean|undefined;
+    @Input() dark: boolean|undefined;
+    @Input('outline-dark') outlineDark: boolean|undefined;
 
-    @Input() lg: boolean;
-    @Input() md: boolean;
-    @Input() sm: boolean;
-    @Input() xs: boolean;
+    @Input() lg: boolean|undefined;
+    @Input() md: boolean|undefined;
+    @Input() sm: boolean|undefined;
+    @Input() xs: boolean|undefined;
 
-    @Input() block: boolean;
-    @Input() vertical: boolean;
-    @Input() horizontal: boolean;
+    @Input() block: boolean|undefined;
+    @Input() vertical: boolean|undefined;
+    @Input() horizontal: boolean|undefined;
 
     @Input() attrs: any;
 
@@ -82,18 +82,18 @@ export class BootstrapBase {
     template: `<i></i>`
 })
 export class NavBootstrapBase extends BootstrapBase {
-    @Input() items: NavItem[];
-    @Input() options: NavOptions;
-    @Input() attributes: string[];
-    @Input() activePath: string;
-    @Input() baseHref: string;
-    @Input() navClass: string;
-    @Input() navItemClass: string;
-    @Input() navLinkClass: string;
-    @Input() childNavItemClass: string;
-    @Input() childNavLinkClass: string;
-    @Input() childNavMenuClass: string;
-    @Input() childNavMenuItemClass: string;
+    @Input() items: NavItem[] = [];
+    @Input() options: NavOptions|undefined;
+    @Input() attributes: string[] = [];
+    @Input() activePath: string|undefined;
+    @Input() baseHref: string|undefined;
+    @Input() navClass: string|undefined;
+    @Input() navItemClass: string|undefined;
+    @Input() navLinkClass: string|undefined;
+    @Input() childNavItemClass: string|undefined;
+    @Input() childNavLinkClass: string|undefined;
+    @Input() childNavMenuClass: string|undefined;
+    @Input() childNavMenuItemClass: string|undefined;
 }
 
 @Component({
@@ -101,21 +101,21 @@ export class NavBootstrapBase extends BootstrapBase {
 })
 export class NavBase {
     @Input() message = '';   
-    @Input() items: NavItem[];
-    @Input() options: NavOptions;
-    @Input() attributes: string[];
-    @Input() activePath: string;
-    @Input() baseHref: string;
-    @Input() navClass: string;
-    @Input() navItemClass: string;
-    @Input() navLinkClass: string;
-    @Input() childNavItemClass: string;
-    @Input() childNavLinkClass: string;
-    @Input() childNavMenuClass: string;
-    @Input() childNavMenuItemClass: string;
+    @Input() items: NavItem[] = [];
+    @Input() options: NavOptions|undefined;
+    @Input() attributes: string[] = [];
+    @Input() activePath: string|undefined;
+    @Input() baseHref: string|undefined;
+    @Input() navClass: string|undefined;
+    @Input() navItemClass: string|undefined;
+    @Input() navLinkClass: string|undefined;
+    @Input() childNavItemClass: string|undefined;
+    @Input() childNavLinkClass: string|undefined;
+    @Input() childNavMenuClass: string|undefined;
+    @Input() childNavMenuItemClass: string|undefined;
     @Input() attrs: any;
 
-    cls(...args:any[]) { return classNames(args); }
+    cls(...args:any[]|any) { return classNames(args); }
 }
 
 const OptionKeys = ['attributes', 'activePath', 'baseHref', 'navClass', 'navItemClass', 'navLinkClass',
@@ -158,7 +158,7 @@ export abstract class AbstractValueAccessor implements ControlValueAccessor {
       this.onChange(value);
     }
 
-    onChange = (_) => {};
+    onChange = (_:any) => {};
     onTouched = () => {};
     registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
     registerOnTouched(fn: () => void): void { this.onTouched = fn; }

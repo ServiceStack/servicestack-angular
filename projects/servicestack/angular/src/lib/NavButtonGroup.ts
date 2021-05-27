@@ -15,7 +15,7 @@ export class NavButtonGroupComponent extends NavBootstrapBase {
 
     @Output() click: EventEmitter<any> = new EventEmitter();
 
-    onClick(e) {
+    onClick(e:any) {
         this.click.emit(e);
     }
 

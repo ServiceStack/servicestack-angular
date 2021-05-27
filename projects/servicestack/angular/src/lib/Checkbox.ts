@@ -7,8 +7,8 @@ import { AbstractValueAccessor, MakeProvider } from './core';
     template: `
     <div>
         <div [className]="cls('form-check',{'is-invalid':errorField,'form-control':errorField})">
-            <input type="checkbox" [id]="name" [name]="name" (input)="onInput($event.target)"
-                [checked]="value" (input)="value = $event.target.checked"
+            <input type="checkbox" [id]="name" [name]="name" 
+                [checked]="value" (input)="onInput($event.target)"
                 [className]="cls('form-check-input',{'is-invalid':errorField},inputClass)" >
             <label class="form-check-label" [for]="id"><ng-content></ng-content></label>
         </div>
@@ -21,19 +21,20 @@ import { AbstractValueAccessor, MakeProvider } from './core';
 export class CheckboxComponent extends AbstractValueAccessor {
 
     @Input() responseStatus: any;
-    @Input() name: string;
-    @Input() placeholder: string;
+    @Input() name: string|undefined;
+    @Input() placeholder: string|undefined;
     @Input() checked: boolean = false;
-    @Input() help: string;
+    @Input() help: string|undefined;
     @Input() inputClass: string = '';
-    @Input() value: boolean = false;
+    // @ts-ignore
+    @Input() value: boolean|undefined = false;
 
-    onInput(e: HTMLInputElement) { 
-        this.value = e.checked;
+    onInput(e: HTMLInputElement|any) { 
+        this.value = e?.checked;
     }
 
     get id(){ return this.name; }
-    get errorField(){ return errorResponse.call(this, this.id); }
+    get errorField(){ return errorResponse.call(this, this.id || ''); }
 
     cls(...args:any[]) { return classNames(args); }
 }
