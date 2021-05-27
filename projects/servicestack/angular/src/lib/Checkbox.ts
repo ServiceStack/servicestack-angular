@@ -27,11 +27,15 @@ export class CheckboxComponent extends AbstractValueAccessor {
     @Input() help: string|undefined;
     @Input() inputClass: string = '';
     
-    public get value(): boolean {
-        return super.value || false;
+    @Input()
+    public get value(): string[] | string {
+        return super._value || false;
     }
-    @Input() public set value(value: boolean) {
-        super.value = value;
+    public set value(value: string[] | string) {
+        if (value !== this._value) {
+            super._value = value;
+            super.onChange(value);
+        }
     }
 
     onInput(e: HTMLInputElement|any) { 
