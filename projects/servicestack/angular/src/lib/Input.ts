@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { errorResponse, classNames } from '@servicestack/client';
-import { AbstractValueAccessor, MakeProvider } from './core';
+import { MakeProvider } from './core';
+import { ControlValueAccessor } from '@angular/forms';
 
 function inputSelectedValues(input: HTMLInputElement) {
     if (input.form == null) {
@@ -44,7 +45,7 @@ function inputSelectedValues(input: HTMLInputElement) {
     `,
     providers: [MakeProvider(InputComponent)],
 })
-export class InputComponent extends AbstractValueAccessor {
+export class InputComponent implements ControlValueAccessor {
 
     @Input() responseStatus: object|undefined;
     @Input() type: string = 'text';
@@ -55,17 +56,27 @@ export class InputComponent extends AbstractValueAccessor {
     @Input() inputClass: string = 'form-control-lg';
     @Input() inline: boolean = false;
     @Input() values: any[] = [];
-
+    
     @Input()
-    public get value(): string[] | string {
-        return super._value || '';
+    _value: string[] | string = '';
+    get value(): string[] | string { return this._value; };
+    set value(v: string[] | string) {
+      if (v !== this._value) {
+        this._value = v;
+        this.onChange(v);
+      }
     }
-    public set value(value: string[] | string) {
-        if (value !== this._value) {
-            super._value = value;
-            super.onChange(value);
-        }
+
+    writeValue(value: any) {
+      this._value = value;
+      // warning: comment below if only want to emit on user intervention
+      this.onChange(value);
     }
+
+    onChange = (_:any) => {};
+    onTouched = () => {};
+    registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
+    registerOnTouched(fn: () => void): void { this.onTouched = fn; }
 
     onInput(e: HTMLInputElement|any) { 
         this.value = e.value;

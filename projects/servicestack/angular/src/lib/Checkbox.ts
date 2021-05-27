@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { errorResponse, classNames } from '@servicestack/client';
-import { AbstractValueAccessor, MakeProvider } from './core';
+import { MakeProvider } from './core';
+import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
     selector: 'ng-checkbox',
@@ -18,7 +19,7 @@ import { AbstractValueAccessor, MakeProvider } from './core';
     `,
     providers: [MakeProvider(CheckboxComponent)],
 })
-export class CheckboxComponent extends AbstractValueAccessor {
+export class CheckboxComponent implements ControlValueAccessor {
 
     @Input() responseStatus: any;
     @Input() name: string|undefined;
@@ -28,15 +29,25 @@ export class CheckboxComponent extends AbstractValueAccessor {
     @Input() inputClass: string = '';
     
     @Input()
-    public get value(): string[] | string {
-        return super._value || false;
+    _value: boolean = false;
+    get value(): boolean { return this._value; };
+    set value(v: boolean) {
+      if (v !== this._value) {
+        this._value = v;
+        this.onChange(v);
+      }
     }
-    public set value(value: string[] | string) {
-        if (value !== this._value) {
-            super._value = value;
-            super.onChange(value);
-        }
+
+    writeValue(value: any) {
+      this._value = value;
+      // warning: comment below if only want to emit on user intervention
+      this.onChange(value);
     }
+
+    onChange = (_:any) => {};
+    onTouched = () => {};
+    registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
+    registerOnTouched(fn: () => void): void { this.onTouched = fn; }
 
     onInput(e: HTMLInputElement|any) { 
         this.value = e?.checked;
