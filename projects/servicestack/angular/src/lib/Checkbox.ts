@@ -27,12 +27,11 @@ export class CheckboxComponent extends AbstractValueAccessor {
     @Input() help: string|undefined;
     @Input() inputClass: string = '';
     
-    private _chkValue: boolean = false;
     public get value(): boolean {
-        return this._chkValue;
+        return super.value;
     }
     @Input() public set value(value: boolean) {
-        this._chkValue = value;
+        super.value = value as any;
     }
 
     onInput(e: HTMLInputElement|any) { 
