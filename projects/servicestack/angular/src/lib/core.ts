@@ -143,7 +143,7 @@ export function routePath(component: any) {
 
 
 export abstract class AbstractValueAccessor implements ControlValueAccessor {
-    _value: any = '';
+    private _value: any = '';
     get value(): any { return this._value; };
     set value(v: any) {
       if (v !== this._value) {

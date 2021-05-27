@@ -54,9 +54,15 @@ export class InputComponent extends AbstractValueAccessor {
     @Input() help: string|undefined;
     @Input() inputClass: string = 'form-control-lg';
     @Input() inline: boolean = false;
-    // @ts-ignore
-    @Input() value: string[]|string;
     @Input() values: any[] = [];
+
+    private _inputValue: string[] | string = '';
+    public get value(): string[] | string {
+        return this._inputValue;
+    }
+    @Input() public set value(value: string[] | string) {
+        this._inputValue = value;
+    }
 
     onInput(e: HTMLInputElement|any) { 
         this.value = e.value;

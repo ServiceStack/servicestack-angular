@@ -26,8 +26,14 @@ export class CheckboxComponent extends AbstractValueAccessor {
     @Input() checked: boolean = false;
     @Input() help: string|undefined;
     @Input() inputClass: string = '';
-    // @ts-ignore
-    @Input() value: boolean|undefined = false;
+    
+    private _chkValue: boolean = false;
+    public get value(): boolean {
+        return this._chkValue;
+    }
+    @Input() public set value(value: boolean) {
+        this._chkValue = value;
+    }
 
     onInput(e: HTMLInputElement|any) { 
         this.value = e?.checked;
