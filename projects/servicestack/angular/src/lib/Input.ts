@@ -57,10 +57,10 @@ export class InputComponent extends AbstractValueAccessor {
     @Input() values: any[] = [];
 
     public get value(): string[] | string {
-        return super._value;
+        return super._value || '';
     }
     @Input() public set value(value: string[] | string) {
-        super._value = value as any;
+        super._value = value;
     }
 
     onInput(e: HTMLInputElement|any) { 
