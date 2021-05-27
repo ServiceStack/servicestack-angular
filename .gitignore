@@ -12,6 +12,7 @@
 
 # dependencies
 /node_modules
+/projects/servicestack/angular/node_modules
 
 # profiling files
 chrome-profiler-events.json
