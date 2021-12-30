@@ -2,6 +2,7 @@
 
 #custom 
 *.log
+.angular/
 
 # compiled output
 /dist
